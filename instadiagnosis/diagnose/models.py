@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 
 # Create your models here.
@@ -20,3 +21,4 @@ class Scan(models.Model):
     region = models.CharField(max_length=200)
     disease = models.CharField(max_length=200)
     result = models.CharField(max_length=50)
+    image = models.ImageField()
