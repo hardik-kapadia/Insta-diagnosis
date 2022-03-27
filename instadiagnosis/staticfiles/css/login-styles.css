@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Doctor";
+  src: url("../fonts/TheDoctor.ttf")
+    format("truetype");
+}
+
+#main-header {
+  font-family: Verdana;
+  font-weight: bold;
+}

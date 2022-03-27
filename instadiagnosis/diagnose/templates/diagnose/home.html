@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Insta-diagnosis</title>
+        <link rel="stylesheet"
+              href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login-styles.css' %}">
+    </head>
+    <body style="background: url({% static 'images/background.webp' %}) no-repeat;background-size: cover;">
+        <div style="padding: 5%;">
+            <div class="container" style="padding: 10%;">
+                <h1 class="fs-1 fw-bold text-center" id = 'main-header'>Insta Diagnosis</h1>
+            </div>
+            <form class="text-center d-md-flex flex-column justify-content-lg-center align-items-lg-center"
+                  method="POST"
+                  action=""
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class = "btn btn-primary" type="submit" value="Submit">
+                <!--
+                <div class="d-lg-flex align-items-center align-content-center align-self-center justify-content-lg-center align-items-lg-center">
+                    <p class="text-center d-md-flex align-items-md-center" style="padding: 2vh; padding-top: 10px; padding-bottom: 0;">
+                        Image:&nbsp;
+                    </p>
+                    <input class="form-control d-md-flex flex-shrink-1 justify-content-md-center" type="file" id="{{form." style="width: 30%;">
+                </div>
+                <div class="d-lg-flex">
+                    <p style="padding: 2vh;padding-top: 5px;padding-bottom: 0;">
+                        Paragraph
+                    </p>
+                    <div class="dropdown" style="--bs-primary: #ffe5b4; --bs-primary-rgb: 255,229,180;">
+                        <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                            Dropdown
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">First Item</a>
+                            <a class="dropdown-item" href="#">Second Item</a>
+                            <a class="dropdown-item" href="#">Third Item</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button">Button</button>
+                -->
+            </form>
+            {% if result %}
+                <div class="text-center d-md-flex flex-column justify-content-lg-center align-items-lg-center">
+                    <h3 class="fs-1 fw-bold text-center" id = 'result'>Result</h3>
+                    <p>
+                        {{ result }}
+                    </p>
+
+                    
+                    <img src = "{% get_media_prefix %}scans/{{image_name}} ""></img>
+                </div>
+            {% endif %}
+        </div>
+        <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
