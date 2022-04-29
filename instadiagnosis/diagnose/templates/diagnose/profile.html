@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Insta-diagnosis</title>
+        <link rel="stylesheet"
+              href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile-styles.css' %}">
+    </head>
+    <body style="background: url({% static 'images/background.webp' %}) no-repeat;background-size: cover;margin:auto">
+        <div class="user-details">
+            <div class="names">
+                <span class="fname">{{ user.first_name }}</span>
+                <span class="lname">{{ user.last_name }}</span>
+            </div>
+            <div class="mobile">{{ user.mobile }}</div>
+            <div class="email">{{ user.email }}</div>
+        </div>
+        <div class="scans">
+            <table>
+                {% for row in table %}
+                    <tr>
+                        <td>{{ row.scan_id }}</td>
+                        <td>{{ row.time }}</td>
+                        <td>{{ row.disease }}</td>
+                        <td>{{ row.result }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
