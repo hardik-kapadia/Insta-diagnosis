@@ -5,31 +5,142 @@
         <meta charset="utf-8">
         <meta name="viewport"
               content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Insta-diagnosis</title>
-        <link rel="stylesheet"
-              href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/profile-styles.css' %}">
+
+        
+        <style>
+            .navbar{
+                background-color: black;
+                border-radius: 0px;
+                position: fixed;
+                
+            }
+            .navbar ul{
+                overflow: auto;
+            }
+            .navbar li{
+                float:left;
+                list-style: none; 
+                color: white;
+                margin: 13px 20px;
+                position: relative;
+                
+                
+            }
+            .navbar li a{
+                padding: 3px 3px;
+                text-decoration: none;
+                color: white;
+                
+            }
+            .navbar li a:hover{
+                color: red
+            }
+            
+            .navbar input{
+                border: 2px solid black;
+                border-radius: 14px;
+                padding: 3px 17px;
+                width: 129px;
+            } 
+           
+            table {
+            border-collapse: collapse;
+            border: 2px solid black;
+            position: absolute;
+                top: 80%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            table td, table th {
+            border: 1px solid black;
+            }
+            table tr:first-child th {
+            border-top: 0;
+            }
+            table tr:last-child td {
+            border-bottom: 0;
+            }
+            table tr td:first-child,
+            table tr th:first-child {
+            border-left: 0;
+            }
+            table tr td:last-child,
+            table tr th:last-child {
+            border-right: 0;
+            }
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                }
+            .user-details {
+                color: black;
+                text-align: center;
+                font-size: large;
+                font-weight: 800;
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            </style>
+            <title>Insta-diagnosis</title>
+            <link rel="stylesheet"
+                href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/profile-styles.css' %}">
+
+       
+        
     </head>
     <body style="background: url({% static 'images/background.webp' %}) no-repeat;background-size: cover;margin:auto">
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li>Insta-Diagnosis</li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/signin">Log Out</a></li>
+
+                    
+                </ul>
+            </nav>
+        </header> 
         <div class="user-details">
+            <h1>User Details</h1>
             <div class="names">
-                <span class="fname">{{ user.first_name }}</span>
+                <span class="fname">Name : {{ user.first_name }}</span>
                 <span class="lname">{{ user.last_name }}</span>
             </div>
             <div class="mobile">{{ user.mobile }}</div>
-            <div class="email">{{ user.email }}</div>
+            <div class="email">Email ID : {{ user.email }}</div>
+            <h3>User History</h3>
+            <h1> </h1>
+            
         </div>
         <div class="scans">
-            <table>
+            
+            <div>
+            <table class="center">
+                <tr>
+                   <!-- <th>Sr.no</th> -->
+                    <th>Timestamp</th>
+                    <th>Disease Type</th>
+                    <th>Output</th>
+                  </tr>
                 {% for row in table %}
                     <tr>
-                        <td>{{ row.scan_id }}</td>
+                        <!--<td>{{ row.scan_id }}</td>-->
                         <td>{{ row.time }}</td>
                         <td>{{ row.disease }}</td>
                         <td>{{ row.result }}</td>
                     </tr>
                 {% endfor %}
             </table>
+            </div>
         </div>
         <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
     </body>

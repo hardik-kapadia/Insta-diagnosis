@@ -2,6 +2,42 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <style>
+            .navbar{
+                background-color: black;
+                border-radius: 0px;
+                position: fixed;
+                
+            }
+            .navbar ul{
+                overflow: auto;
+            }
+            .navbar li{
+                float:left;
+                list-style: none; 
+                color: white;
+                margin: 13px 20px;
+                position: relative;
+                
+                
+            }
+            .navbar li a{
+                padding: 3px 3px;
+                text-decoration: none;
+                color: white;
+                
+            }
+            .navbar li a:hover{
+                color: red
+            }
+            
+            .navbar input{
+                border: 2px solid black;
+                border-radius: 14px;
+                padding: 3px 17px;
+                width: 129px;
+            }
+        </style>
         <meta charset="utf-8">
         <meta name="viewport"
               content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -11,6 +47,18 @@
         <link rel="stylesheet" href="{% static 'css/login-styles.css' %}">
     </head>
     <body style="background: url({% static 'images/background.webp' %}) no-repeat;background-size: cover;">
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li>Insta-Diagnosis</li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/signin">Log Out</a></li>
+
+                    
+                </ul>
+            </nav>
+        </header>
         <div style="padding: 5%;">
             <div class="container" style="padding: 10%;">
                 <h1 class="fs-1 fw-bold text-center" id = 'main-header'>Insta Diagnosis</h1>
