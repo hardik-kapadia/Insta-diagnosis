@@ -1,7 +1,7 @@
 
 from django import forms
 
-DISEASES = [('covid', 'Covid-19'), ('brain_tumor', 'Brain Tumor')]
+DISEASES = [('covid', 'Covid-19'), ('brain_tumor', 'Brain Tumor'),('arthritis','Knee Arthritis')]
 
 
 class ImageForm(forms.Form):

@@ -5,8 +5,6 @@
         <meta charset="utf-8">
         <meta name="viewport"
               content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-
-        
         <style>
             .navbar{
                 background-color: black;
@@ -87,28 +85,29 @@
                 transform: translate(-50%, -50%);
             }
             
-            </style>
-            <title>Insta-diagnosis</title>
-            <link rel="stylesheet"
-                href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
-            <link rel="stylesheet" href="{% static 'css/profile-styles.css' %}">
-
-       
-        
+        </style>
+        <title>Insta-diagnosis</title>
+        <link rel="stylesheet"
+              href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile-styles.css' %}">
     </head>
     <body style="background: url({% static 'images/background.webp' %}) no-repeat;background-size: cover;margin:auto">
         <header>
             <nav class="navbar">
                 <ul>
                     <li>Insta-Diagnosis</li>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/signin">Log Out</a></li>
-
-                    
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/signout">Log Out</a>
+                    </li>
                 </ul>
             </nav>
-        </header> 
+        </header>
         <div class="user-details">
             <h1>User Details</h1>
             <div class="names">
@@ -118,28 +117,26 @@
             <div class="mobile">{{ user.mobile }}</div>
             <div class="email">Email ID : {{ user.email }}</div>
             <h3>User History</h3>
-            <h1> </h1>
-            
+            <h1></h1>
         </div>
         <div class="scans">
-            
             <div>
-            <table class="center">
-                <tr>
-                   <!-- <th>Sr.no</th> -->
-                    <th>Timestamp</th>
-                    <th>Disease Type</th>
-                    <th>Output</th>
-                  </tr>
-                {% for row in table %}
+                <table class="center">
                     <tr>
-                        <!--<td>{{ row.scan_id }}</td>-->
-                        <td>{{ row.time }}</td>
-                        <td>{{ row.disease }}</td>
-                        <td>{{ row.result }}</td>
+                        <!-- <th>Sr.no</th> -->
+                        <th>Timestamp</th>
+                        <th>Disease Type</th>
+                        <th>Output</th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for row in table %}
+                        <tr>
+                            <!--<td>{{ row.scan_id }}</td>-->
+                            <td>{{ row.time }}</td>
+                            <td>{{ row.disease }}</td>
+                            <td>{{ row.result }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
         <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>

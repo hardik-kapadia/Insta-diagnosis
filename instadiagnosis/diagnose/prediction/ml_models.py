@@ -58,3 +58,21 @@ def predict_brain_tumor(img_path):
     pred1 = np.argmax(pred,axis=1)
     labels = ['glioma_tumor','no_tumor','meningioma_tumor','pituitary_tumor']
     return "{} with probability : {:.4f}%".format(labels[pred1[0]],pred[0,pred1[0]]*100)
+
+def predict_knee_arthritis(img_path):
+    
+    
+    img = cv2.imdecode(np.frombuffer(img_path.read(), np.uint8), 1)
+    
+    # img = cv2.imread(image_path)
+    img1 = cv2.resize(img,(150,150))
+    # model = keras.models.load_model(model_path)
+    
+    path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'models/knee_arthritis_model.h5')
+    
+    model = keras.models.load_model(path)
+    pred = np.array([img1])
+    pred = model.predict(pred)
+    pred1 = np.argmax(pred,axis=1)
+    labels = ['0','1','2','3','4']
+    return f"Grade {labels[pred1[0]]} arthritis with probability : {pred[0,pred1[0]]*100}%"

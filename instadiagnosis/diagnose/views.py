@@ -1,3 +1,4 @@
+import unicodedata
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
@@ -5,10 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
+from django.utils.text import slugify
+
 from .forms import ImageForm, RegisterForm
 from .models import Scan
 
-from .prediction.ml_models import predict_brain_tumor, predict_covid_noncovid
+from .prediction.ml_models import predict_brain_tumor, predict_covid_noncovid, predict_knee_arthritis
 
 
 def signin(request):
@@ -62,13 +65,13 @@ def signup(request):
 
     return render(request, 'diagnose/register.html', context=context)
 
-    pass
 
 
 def signout(request):
     logout(request)
+    return render(request, 'diagnose/login.html')
 
-
+@login_required(login_url='/signin/')
 def home(request):
 
     context = {}
@@ -78,11 +81,14 @@ def home(request):
         if form.is_valid():
             disease = form.cleaned_data.get("disease")
             scan = form.cleaned_data.get("image")
+            # scan.name = 'latest_image'
 
             img = scan.file
 
             if disease == 'covid':
                 predictor = predict_covid_noncovid
+            elif disease == 'arthritis':
+                predictor = predict_knee_arthritis
             else:
                 predictor = predict_brain_tumor
 
@@ -94,6 +100,9 @@ def home(request):
                 user_ = request.user
 
             print('user is: ', user_)
+            
+            if not user_:
+                return render(request, 'diagnose/login.html')
 
             obj = Scan.objects.create(
                 disease=disease,
@@ -103,7 +112,8 @@ def home(request):
             )
 
             context['result'] = prediction
-            context['image_name'] = scan.name
+            context['image_name'] = str(scan.name).replace(" ","_")
+            
 
             obj.save()
 
@@ -112,6 +122,8 @@ def home(request):
         form = ImageForm()
 
     context['form'] = form
+
+    print(context)
 
     return render(request, 'diagnose/home.html', context=context)
 
@@ -134,5 +146,7 @@ def profile(request):
 
     context['user'] = request.user
     context['table'] = scans_list
+    
+    print(context)
 
     return render(request, 'diagnose/profile.html', context=context)
