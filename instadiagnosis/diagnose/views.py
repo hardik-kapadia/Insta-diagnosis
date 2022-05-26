@@ -11,7 +11,7 @@ from django.utils.text import slugify
 from .forms import ImageForm, RegisterForm
 from .models import Scan
 
-from .prediction.ml_models import predict_brain_tumor, predict_covid_noncovid, predict_knee_arthritis
+from .prediction.ml_models import predict_brain_tumor, predict_covid_noncovid, predict_knee_arthritis, predict_kidney_stone
 
 
 def signin(request):
@@ -89,6 +89,8 @@ def home(request):
                 predictor = predict_covid_noncovid
             elif disease == 'arthritis':
                 predictor = predict_knee_arthritis
+            elif disease == 'kidney':
+                predictor = predict_kidney_stone
             else:
                 predictor = predict_brain_tumor
 

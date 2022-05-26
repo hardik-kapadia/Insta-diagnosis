@@ -44,11 +44,8 @@
             table {
             border-collapse: collapse;
             border: 2px solid black;
-            position: absolute;
-                top: 80%;
-                left: 50%;
-                transform: translate(-50%, -50%);
             }
+
             table td, table th {
             border: 1px solid black;
             }
@@ -117,27 +114,24 @@
             <div class="mobile">{{ user.mobile }}</div>
             <div class="email">Email ID : {{ user.email }}</div>
             <h3>User History</h3>
-            <h1></h1>
         </div>
         <div class="scans">
-            <div>
-                <table class="center">
+            <table class="table center">
+                <tr>
+                    <!-- <th>Sr.no</th> -->
+                    <th>Timestamp</th>
+                    <th>Disease Type</th>
+                    <th>Output</th>
+                </tr>
+                {% for row in table %}
                     <tr>
-                        <!-- <th>Sr.no</th> -->
-                        <th>Timestamp</th>
-                        <th>Disease Type</th>
-                        <th>Output</th>
+                        <!--<td>{{ row.scan_id }}</td>-->
+                        <td>{{ row.time }}</td>
+                        <td>{{ row.disease }}</td>
+                        <td>{{ row.result }}</td>
                     </tr>
-                    {% for row in table %}
-                        <tr>
-                            <!--<td>{{ row.scan_id }}</td>-->
-                            <td>{{ row.time }}</td>
-                            <td>{{ row.disease }}</td>
-                            <td>{{ row.result }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
+                {% endfor %}
+            </table>
         </div>
         <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
     </body>
