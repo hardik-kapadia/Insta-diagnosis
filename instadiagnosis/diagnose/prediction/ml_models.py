@@ -74,7 +74,7 @@ def predict_knee_arthritis(img_path):
     pred = model.predict(pred)
     pred1 = np.argmax(pred,axis=1)
     labels = ['0','1','2','3','4']
-    return f"Grade {labels[pred1[0]]} arthritis with probability : {pred[0,pred1[0]]*100}%"
+    return "Grade {} with probability : {:.4f}%".format(labels[pred1[0]],pred[0,pred1[0]]*100)
 
 def predict_kidney_stone(img_path):
     
