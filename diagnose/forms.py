@@ -11,6 +11,6 @@ class ImageForm(forms.Form):
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=20)
     password = forms.CharField(widget=forms.PasswordInput())
-    email=forms.EmailField()
+    email = forms.EmailField()
     first_name = forms.CharField()
     last_name = forms.CharField()
